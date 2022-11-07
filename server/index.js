@@ -11,7 +11,10 @@ app.use(express.urlencoded({ extended: true }));
 
 // ROUTES
 app.get('/products', (req, res) => {
-  db.query('SELECT * FROM product').then((data) => res.send(data));
+  let pg = Number(req.query.page) || 1;
+  let ct = Number(req.query.count) || 5;
+  let start = (pg - 1) * ct + 1;
+  db.query(`SELECT * FROM product WHERE id>=${start} LIMIT ${ct}`).then((data) => res.send(data.rows));
 })
 
 app.get('/products/:product_id', (req, res) => {

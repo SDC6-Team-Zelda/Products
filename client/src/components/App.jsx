@@ -18,7 +18,13 @@ const App = () => {
 
     axios.get(`/products/66646/related`)
       .then((res) => {
-        console.log(res.data)
+        console.log('/products/:product_id/related: ', res.data)
+      })
+      .catch(err => console.log(err.message))
+
+    axios.get(`/products?`)
+      .then((res) => {
+        console.log('/products: ', res.data)
       })
       .catch(err => console.log(err.message))
   }, [])
