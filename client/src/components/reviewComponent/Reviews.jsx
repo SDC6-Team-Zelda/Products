@@ -38,11 +38,7 @@ const Reviews = (props) => {
       setProduct(response.data.results)
     })
 
-    axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfc/products/${props.product.id}`, {
-      headers: {
-        'Authorization': process.env.AUTH_KEY
-      }
-    })
+    axios.get(`/products/${props.product.id}`)
     .then((response) => {
       setName(response.data.name)
 

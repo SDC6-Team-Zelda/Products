@@ -22,11 +22,7 @@ const Product = ({ product }) => {
   const zoomProps = { width: 850, height: 570, img: currentPhoto, zoomPosition: 'original' };
 
   useEffect(() => {
-    axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfc/products/${product.id}/styles`, {
-      headers: {
-        'Authorization': process.env.AUTH_KEY
-      }
-    })
+    axios.get(`/products/${product.id}/styles`)
       .then((res) => {
         setStyles(res.data.results)
         setCurrentStyle(res.data.results[0])

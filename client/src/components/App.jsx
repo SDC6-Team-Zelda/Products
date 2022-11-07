@@ -10,13 +10,15 @@ const App = () => {
   const [product, setProduct] = useState({})
 
   useEffect(() => {
-    axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfc/products/66646`, {
-      headers: {
-        'Authorization': process.env.AUTH_KEY
-      }
-    })
+    axios.get(`/products/66646`)
       .then((res) => {
         setProduct(res.data)
+      })
+      .catch(err => console.log(err.message))
+
+    axios.get(`/products/66646/related`)
+      .then((res) => {
+        console.log(res.data)
       })
       .catch(err => console.log(err.message))
   }, [])
